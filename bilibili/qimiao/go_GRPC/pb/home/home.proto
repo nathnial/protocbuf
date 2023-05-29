@@ -1,0 +1,14 @@
+syntax = "proto3";
+package home;
+option go_package = "qimiaoPB/pb/home;home";
+
+message Home{
+    string home_num = 1;
+}
+
+service SearchService{
+    rpc Search(Home) returns (Home); // 传统的即刻相应
+    rpc SearchIn(stream Home) returns (Home); // 入参为流
+    rpc SearchOut(Home) returns (stream Home); // 出参为流
+    rpc SearchIO(stream Home) returns (stream Home); // 出入均为流
+}

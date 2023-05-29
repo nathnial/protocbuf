@@ -1,0 +1,43 @@
+syntax = "proto3";
+package person;
+option go_package="qimiaoPB/pb/person;person";
+
+import "home/home.proto";
+// 这是一行注释
+/*
+这里是一段注释
+*/
+// message Home{
+//     repeated Person persons = 1;
+//     message Vistor{
+//         string name = 1;
+//     }
+//     Vistor v = 2;
+// }
+message Person{
+    string name = 1;
+    int32 age = 2;
+    bool dead = 3;
+
+    enum Sex{
+        option allow_alias = true;
+        male = 0;
+        female = 1;
+        women = 1;
+        girl = 1;
+        others = 2;
+    }
+
+    Sex gender = 4;
+    home.Home p_home = 6;
+    oneof highestEducation{
+        string primarySchool = 7;
+        string middleSchool = 8;
+        string University = 9;
+    }
+
+//    repeated string slice = 4;
+//    map <string, string> m = 5;
+    reserved "slice", "m";
+    reserved 5;
+}
