@@ -1,0 +1,19 @@
+syntax = "proto3";
+package person;
+option go_package="qimiaoGPRCtest/pb/person;person";
+
+message PersonReq{
+    string name = 1;
+    int32 age = 2;
+}
+message PersonRes{
+    string name = 1;
+    int32 age = 2;
+}
+
+service SearchService{
+    rpc Search(PersonReq) returns (PersonRes);
+    rpc SearchIn(stream PersonReq) returns (PersonRes);
+    rpc SearchOut(PersonReq) returns (stream PersonRes);
+    rpc SearchIO(stream PersonReq) returns (stream PersonRes);
+}
